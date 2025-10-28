@@ -718,6 +718,40 @@ func TestDiskRequest(t *testing.T) {
 	}
 }
 
+func TestGPURequest(t *testing.T) {
+	// Start with a fresh initialized submission
+	s := _inittests(t, false)
+
+	// Default test data does not specify GPUs; expect 0
+	gpus := s.GPURequest()
+	var expected int64
+	expected = 0
+	if gpus != expected {
+		t.Errorf("GPU request was %d, not %d", gpus, expected)
+	}
+
+	// Set a minimum GPU requirement on the existing step and recheck
+	s.Steps[0].Component.Container.MinGPUs = 1
+	gpus = s.GPURequest()
+	expected = 1
+	if gpus != expected {
+		t.Errorf("GPU request was %d, not %d after setting MinGPUs=1", gpus, expected)
+	}
+
+	// Add a second step with a higher MinGPUs to ensure we take the maximum of mins
+	second := s.Steps[0] // shallow copy is fine for test purposes
+	second.Component.Container.MinGPUs = 4
+	s.Steps = append(s.Steps, second)
+	gpus = s.GPURequest()
+	expected = 4
+	if gpus != expected {
+		t.Errorf("GPU request was %d, not %d after adding second step with MinGPUs=4", gpus, expected)
+	}
+
+	// Reset memoized submission for other tests
+	_inittests(t, false)
+}
+
 func TestExtractJobID(t *testing.T) {
 	testData := []byte(`1000 job(s) submitted to cluster 100000000.0000.`)
 	actual := ExtractJobID(testData)
