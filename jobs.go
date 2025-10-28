@@ -446,6 +446,8 @@ func (job *Job) CPURequest() float32 {
 	return cpu
 }
 
+// TODO: GPURequest?
+
 // MemoryRequest calculates the highest minimum memory among the steps of a job
 // (i.e.  the largest slot size the job will need), or 0 if no steps have min
 // memory set.
