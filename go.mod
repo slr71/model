@@ -1,4 +1,4 @@
-module github.com/cyverse-de/model/v8
+module github.com/cyverse-de/model/v9
 
 go 1.24
 

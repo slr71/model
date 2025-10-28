@@ -8,7 +8,7 @@ Primary responsibilities:
 The code is a library consumed by other CyVerse services; it does not contain a main binary. Expect callers to provide configuration via `viper` and JSON payloads that map onto the types here (for example `Job`, `Step`, `Container`).
 
 ## Key files to reference
-- `go.mod` — project dependencies and Go version (module path `github.com/cyverse-de/model/v8`).
+- `go.mod` — project dependencies and Go version (module path `github.com/cyverse-de/model/**`).
 - `jobs.go` — central Job type and many helpers (DirectoryName, OutputDirectory, FinalOutputArguments, resource request helpers).
 - `step.go` — Step, StepConfig, params/arguments ordering, and env/exec helpers used when assembling runtime commands.
 - `container.go` — Container, Volume, ContainerImage and container-specific helpers (WorkingDirectory, UsesVolumes).
