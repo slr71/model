@@ -61,7 +61,7 @@ for _, p := range params { // stable order by p.Order
 ## What to watch for when editing
 - Preserve JSON tags and method contracts. Changes to struct fields or JSON tags can break callers.
 - Keep computed helper behavior stable (return formats of directory paths, trailing slashes for collections, etc.). Tests in the repo exercise many of these behaviors — update/add tests when changing behavior.
-- This module is versioned as v8 in the module path. If releasing a new major version, update module path and coordinate with downstream consumers.
+- This module is versioned as v9 in the module path. If releasing a new major version, update module path and coordinate with downstream consumers.
 
 ## Where to look next / follow-ups
 - If you need runtime examples of how these models are consumed, search in the `cyverse-de` organization for imports of `github.com/cyverse-de/model/v8`.
