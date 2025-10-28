@@ -724,8 +724,7 @@ func TestGPURequest(t *testing.T) {
 
 	// Default test data does not specify GPUs; expect 0
 	gpus := s.GPURequest()
-	var expected int64
-	expected = 0
+	expected := int64(0)
 	if gpus != expected {
 		t.Errorf("GPU request was %d, not %d", gpus, expected)
 	}
