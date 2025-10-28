@@ -64,7 +64,7 @@ for _, p := range params { // stable order by p.Order
 - This module is versioned as v9 in the module path. If releasing a new major version, update module path and coordinate with downstream consumers.
 
 ## Where to look next / follow-ups
-- If you need runtime examples of how these models are consumed, search in the `cyverse-de` organization for imports of `github.com/cyverse-de/model/v8`.
+- If you need runtime examples of how these models are consumed, search in the `cyverse-de` organization for imports of `github.com/cyverse-de/model/v9`.
 - Add small focused tests for behavioral changes: a happy path + one edge case (e.g., collection trailing slash handling).
 
 If any section is unclear or you'd like the file to include more examples (test examples, typical JSON payloads, or a small quick-start snippet for local testing), tell me which part and I'll iterate.
