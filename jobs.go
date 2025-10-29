@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cyverse-de/model/v8/submitfile"
+	"github.com/cyverse-de/model/v9/submitfile"
 	"github.com/spf13/viper"
 )
 
@@ -444,6 +444,21 @@ func (job *Job) CPURequest() float32 {
 	}
 
 	return cpu
+}
+
+// GPURequest calculates the highest minimum GPU count among the steps of a job
+// (i.e. the largest slot size the job will need in terms of GPUs), or 0 if no
+// steps have min GPUs set.
+func (job *Job) GPURequest() int64 {
+	var gpus int64
+
+	for _, step := range job.Steps {
+		if step.Component.Container.MinGPUs > gpus {
+			gpus = step.Component.Container.MinGPUs
+		}
+	}
+
+	return gpus
 }
 
 // MemoryRequest calculates the highest minimum memory among the steps of a job
