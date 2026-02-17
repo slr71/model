@@ -272,3 +272,26 @@ func TestPorts(t *testing.T) {
 		t.Error("bind to host was false")
 	}
 }
+func TestStepContainerGPUModels(t *testing.T) {
+	s := inittests(t)
+	gpumodels := s.Steps[0].Component.Container.GPUModels
+	nummodels := len(gpumodels)
+	if nummodels != 1 {
+		t.Errorf("The number of GPU models was '%d' instead of 1", nummodels)
+	}
+
+	if gpumodels[0] != "NVIDIA-A16" {
+		t.Errorf("The first GPU model was '%s' instead of 'NVIDIA-A16'", gpumodels[0])
+	}
+}
+
+func TestStepContainerGPUModelsEmpty(t *testing.T) {
+	s := inittestsFile(t, "test/no_volumes_submission.json")
+	gpumodels := s.Steps[0].Component.Container.GPUModels
+	if gpumodels == nil {
+		gpumodels = []string{}
+	}
+	if len(gpumodels) != 0 {
+		t.Errorf("The number of GPU models was '%d' instead of 0 when not specified", len(gpumodels))
+	}
+}
