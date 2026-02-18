@@ -64,6 +64,7 @@ type Container struct {
 	MinGPUs         int64           `json:"min_gpus"`         // The minimum number of GPUs the container needs.
 	MinDiskSpace    int64           `json:"min_disk_space"`   // The minimum amount of disk space that the container needs.
 	PIDsLimit       int64           `json:"pids_limit"`
+	GPUModels       []string        `json:"gpu_models"` // A list of acceptable GPU models. Empty means no limitation.
 	Image           ContainerImage  `json:"image"`
 	EntryPoint      string          `json:"entrypoint"`
 	WorkingDir      string          `json:"working_directory"`

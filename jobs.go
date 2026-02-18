@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cyverse-de/model/v9/submitfile"
+	"github.com/cyverse-de/model/v10/submitfile"
 	"github.com/spf13/viper"
 )
 

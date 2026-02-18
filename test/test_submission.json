@@ -36,6 +36,7 @@
                         "tag":"latest",
                         "name":"gims.iplantcollaborative.org:5000/backwards-compat"
                     },
+                    "gpu_models": ["NVIDIA-A16"],
                     "container_volumes_from" : [
                       {
                         "name":"vf-name1",
