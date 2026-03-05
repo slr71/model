@@ -35,7 +35,7 @@ const (
 // in the original string, which is valid, but may be confusing to human
 // readers.
 func naivelyquote(s string) string {
-	return fmt.Sprintf("'%s'", strings.Replace(s, "'", "''", -1))
+	return fmt.Sprintf("'%s'", strings.ReplaceAll(s, "'", "''"))
 }
 
 // quote quotes and escapes a string that is supposed to be passed in to a tool on
@@ -190,8 +190,8 @@ func NewAnalysis(cfg *AnalysisConfig, data []byte) (*Analysis, error) {
 // part of a path. Mostly to keep things from getting really confusing when
 // a path is passed to Condor.
 func sanitize(s string) string {
-	step := strings.Replace(s, "@", "_", -1)
-	step = strings.Replace(step, " ", "_", -1)
+	step := strings.ReplaceAll(s, "@", "_")
+	step = strings.ReplaceAll(step, " ", "_")
 	return step
 }
 
@@ -247,7 +247,7 @@ func (job *Job) UserIDForSubmission() string {
 	} else {
 		retval = job.UserID
 	}
-	return fmt.Sprintf("_%s", strings.Replace(retval, "-", "", -1))
+	return fmt.Sprintf("_%s", strings.ReplaceAll(retval, "-", ""))
 }
 
 // CondorLogDirectory returns the path to the directory containing condor logs on the
