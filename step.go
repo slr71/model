@@ -185,7 +185,7 @@ func (p PreviewableStepParam) String() string {
 	var buffer bytes.Buffer
 	sort.Sort(ByOrder(p))
 	for _, param := range p {
-		buffer.WriteString(fmt.Sprintf("%s %s ", param.Name, param.Value))
+		_, _ = fmt.Fprintf(&buffer, "%s %s ", param.Name, param.Value)
 	}
 	return strings.TrimSpace(buffer.String())
 }
